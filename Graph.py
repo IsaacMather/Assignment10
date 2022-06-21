@@ -5,6 +5,12 @@ from Vertex import Vertex
 
 class Graph:
 
+    @classmethod
+    def dijkstra_solve(cls, start, stop):
+    #     THis method is a sligh modificatino to the show_shortest_path
+    #     method presented in the modules
+        pass
+
     def __init__(self):
         self._vertices = {}
 
@@ -73,3 +79,5 @@ class Graph:
             while len(path_stack) > 0:
                 print(f"--->{path_stack.pop().data}", end="")
         print("")
+
+

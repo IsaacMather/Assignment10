@@ -1,0 +1,12 @@
+#time complexity
+It may be O(n), look at the emperical time complexity.
+Because it travels to each of the nodes for sure. The complexity could be n^2
+because of how the nodes grow.
+
+Is there a reason it wouldn't visit a smaller postion of the nodes as the
+graphs get larger?
+
+#but lets look at the emperical complexity
+
+#take a look at the numbers collected, and see how it grows with time
+
