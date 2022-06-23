@@ -5,14 +5,31 @@ from Vertex import Vertex
 
 class Graph:
 
-    @classmethod
-    def dijkstra_solve(cls, start, stop):
-    #     THis method is a sligh modificatino to the show_shortest_path
-    #     method presented in the modules
-        pass
-
     def __init__(self):
         self._vertices = {}
+
+    def dijkstra_solve(self, start, stop):
+
+        start_vert = self._vertices[start]
+        stop_vert = self._vertices[stop]
+
+        self.dijkstra(start)
+
+        return_list = []
+
+        # print(f"Cost of shortest path from {start} to {stop}: {stop_vert.dist}")
+        if stop_vert.dist < float("inf"):
+            path_stack = collections.deque()
+            current_vert = stop_vert
+            while current_vert is not start_vert:
+                path_stack.append(current_vert)
+                current_vert = current_vert.prev_in_path
+
+            return_list.append(start_vert.data)
+            while len(path_stack) > 0:
+                return_list.append(path_stack.pop().data)
+        # print("")
+        return return_list
 
     def get_vertex_object(self, vertex_data):
         try:
@@ -79,5 +96,3 @@ class Graph:
             while len(path_stack) > 0:
                 print(f"--->{path_stack.pop().data}", end="")
         print("")
-
-

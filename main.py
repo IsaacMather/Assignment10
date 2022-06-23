@@ -149,16 +149,18 @@ class Maze:
 
 
         #looks like we may be crawling through width
-        for curr_height in self._height:
-            for curr_width in self._width:
-                if not self.is_wall(curr_width, curr_height, curr_width+1, curr_height):
+        for Y in range(self._height):
+            for X in range(self._width):
+                if X + 1 < self._width:
+                    if not self.is_wall(X, Y, X+1, Y):
+                        graph.add_edge((X, Y), (X+1, Y), 1)
+                        graph.add_edge((X+1, Y), (X, Y), 1)
+                if Y + 1 < self._height:
+                    if not self.is_wall(X, Y, X, Y+1):
+                        graph.add_edge((X, Y), (X, Y+1),1)
+                        graph.add_edge((X, Y+1),(X, Y),1)
 
-                    graph.add_edge(([curr_width])
-
-                    #add edge going forward, and going back
-                if not self.is_wall(curr_width, curr_height, curr_width, curr_height + 1):
-
-
+        # graph.show_adj_table()
         return graph
         # at 0,0, you check 0,1, and 1,0, to see if it is a wall, and if
         # its not, you add an edge. You're only adding an edge if iswall
@@ -190,7 +192,7 @@ class Maze:
 
         #so the question is, we need to fire up a graph, and start adding
         # locations from the maze to it, and making edges
-        pass
+
     # Student Code Here
 
     def create_solution_path(self, method=Method.RANDOM):
@@ -287,18 +289,18 @@ def main():
 
 
 def create_and_solve():
-    for size in [5, 10, 20, 40, 80]:
+    for size in [5, 10, 20, 40, 80, 160]:
         for method in Maze.Method:
             print("Maze Size", size)
             d_total_time = 0
-            a_total_time = 0
+            # a_total_time = 0
             trials = 20
             for a in range(trials):
                 random.seed(a)
                 my_maze = Maze(size, size + 5)
                 my_maze.create_solution_path(method=method)
                 # Uncomment to print the maze and solution path
-                my_maze.print_maze(True)
+                # my_maze.print_maze(True)
                 # print()
                 d_start = time.perf_counter()
                 maze_graph = my_maze.create_graph()
@@ -310,22 +312,64 @@ def create_and_solve():
                 d_end = time.perf_counter()
                 d_total_time += (d_end - d_start)
                 # Uncomment for A* graph testing
-                a_start = time.perf_counter()
-                random.seed(a)
-                maze_graph = my_maze.create_graph()
-                a_path = maze_graph.a_star_solve(my_maze.start, my_maze.end)
+                # a_start = time.perf_counter()
+                # random.seed(a)
+                # maze_graph = my_maze.create_graph()
+                # a_path = maze_graph.a_star_solve(my_maze.start, my_maze.end)
                 # Uncomment to see the actual and proposed solution paths
                 # print(d_path, my_maze.solution_path)
                 # if a_path != my_maze.solution_path:
                 #     print("Error: Proposed A* solution is invalid")
-                a_end = time.perf_counter()
-                a_total_time += (a_end - a_start)
+                # a_end = time.perf_counter()
+                # a_total_time += (a_end - a_start)
             print(f"Dijkstra took {d_total_time / trials * 1000:.3f} "
                   f"ms with {method}")
             # Uncomment for A* results
-            print(f"A* took {a_total_time / trials * 1000:.3f} "
-                  f"ms with {method}")
+            # print(f"A* took {a_total_time / trials * 1000:.3f} "
+            #       f"ms with {method}")
 
 
 if __name__ == "__main__":
     create_and_solve()
+
+
+#SAMPLE RUNS
+# /Users/isaacmather/PycharmProjects/Assignment10/venv/bin/python /Users/isaacmather/PycharmProjects/Assignment10/main.py
+# Maze Size 5
+# Dijkstra took 1.124 ms with Method.STACK
+# Maze Size 5
+# Dijkstra took 0.762 ms with Method.RANDOM
+# Maze Size 5
+# Dijkstra took 0.537 ms with Method.BIAS
+# Maze Size 10
+# Dijkstra took 1.549 ms with Method.STACK
+# Maze Size 10
+# Dijkstra took 1.052 ms with Method.RANDOM
+# Maze Size 10
+# Dijkstra took 1.012 ms with Method.BIAS
+# Maze Size 20
+# Dijkstra took 4.932 ms with Method.STACK
+# Maze Size 20
+# Dijkstra took 3.662 ms with Method.RANDOM
+# Maze Size 20
+# Dijkstra took 4.567 ms with Method.BIAS
+# Maze Size 40
+# Dijkstra took 14.177 ms with Method.STACK
+# Maze Size 40
+# Dijkstra took 13.136 ms with Method.RANDOM
+# Maze Size 40
+# Dijkstra took 15.155 ms with Method.BIAS
+# Maze Size 80
+# Dijkstra took 56.650 ms with Method.STACK
+# Maze Size 80
+# Dijkstra took 55.404 ms with Method.RANDOM
+# Maze Size 80
+# Dijkstra took 56.647 ms with Method.BIAS
+# Maze Size 160
+# Dijkstra took 243.236 ms with Method.STACK
+# Maze Size 160
+# Dijkstra took 236.994 ms with Method.RANDOM
+# Maze Size 160
+# Dijkstra took 235.560 ms with Method.BIAS
+#
+# Process finished with exit code 0

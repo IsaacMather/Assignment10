@@ -10,3 +10,15 @@ graphs get larger?
 
 #take a look at the numbers collected, and see how it grows with time
 
+TODO:
+Questions:
+#how do we appropriately handle the size problem? is it range(size -1?)
+
+#i think the create graph seems OK? Maybe? How do i know?
+
+#djikstra_solve is being passed a pair of tuples? How do i drill in to that?
+
+
+dont want to print the maze size
+
+change the bias to .25, and then .75
