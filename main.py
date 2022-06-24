@@ -137,16 +137,6 @@ class Maze:
 
     def create_graph(self):
         graph = Graph()
-        #going to have to go through and use our graph methods,
-
-
-        #you're going to do some for loops,
-        # for
-        # for
-        # you may need to another for loop here
-        # if
-        # graph.add_edge()
-
 
         #looks like we may be crawling through width
         for Y in range(self._height):
