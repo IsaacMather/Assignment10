@@ -162,38 +162,7 @@ class Maze:
 
         # graph.show_adj_table()
         return graph
-        # at 0,0, you check 0,1, and 1,0, to see if it is a wall, and if
-        # its not, you add an edge. You're only adding an edge if iswall
-        # returns false. You need to add two edges, each time iswall returns
-        # false,
-        #mike is visiting a node, and he's looking up and to the right,
 
-        #prof reed looked at all directions, and if iswall returned false,
-        # then added an edge.
-
-        # One problem is that the maze generator was not designed to create
-        # a graph.
-        #
-        # Add a method to class Maze called create_graph() that
-        # will create and return a graph based on the maze that was created.
-        #
-        # Each node in the graph should be one position in the maze.
-        #
-        # The 'data' for the node will be the x,y position of the node as a
-        # tuple.
-        #
-        # Each edge in the graph should represent a valid path from
-        # one position to the next.
-        #
-        # Node that if two nodes are connected in
-        # the maze, travel in either direction is possible so there should
-        # be edges going in both directions. The source in the graph should
-        # be the start node of the maze, and the sink should be the end node.
-
-        #so the question is, we need to fire up a graph, and start adding
-        # locations from the maze to it, and making edges
-
-    # Student Code Here
 
     def create_solution_path(self, method=Method.RANDOM):
 
